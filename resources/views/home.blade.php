@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-
+ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
 							<!--Banner Section-->
 							<section>
 								<div class="banner-1 cover-image sptb-tab bg-background-support" data-bs-image-src="{{asset('assets/images/photos/banner2.jpg')}}">
