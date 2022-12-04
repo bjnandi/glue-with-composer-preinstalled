@@ -75,15 +75,15 @@ phases:
     - ls
     - cd ../vendor
     - ls
-    - cd ~
+    - cd /
     - ls
     - pwd
     - ls
     - pwd
     - find . -name reports
-    - cd../../../..
+
 reports:
   test-report:
     files:
-      -/build/reports.xml
+      - reports.xml
     file-format: JunitXml
