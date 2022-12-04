@@ -81,7 +81,7 @@ phases:
     - cd ./codebuild/output/src782155194/src/github.com/bjnandi/glue-with-composer-preinstalled
     - ls
     - pwd
-    - find . -name reports
+    - find . -name reports111
 
 reports:
   test-report:
