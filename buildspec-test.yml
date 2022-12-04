@@ -5,7 +5,14 @@ phases:
 
  install:
   commands:
-     # Here we are going to install required packages for our Laravel Project
+   # - pwd
+   # - ls
+   # - mkdir cloudboost
+   # - cp /Entrypoint/* /cloudboost/
+   # - cp /NGINX/* /cloudboost/nginx/
+   # - cd cloudboost
+    
+    # Here we are going to install required packages for our Laravel Project
     - apt update -y
     - apt install lsb-release ca-certificates apt-transport-https software-properties-common curl unzip mysql-server git nginx -y --no-install-recommends
     - add-apt-repository ppa:ondrej/php -y
@@ -30,18 +37,18 @@ phases:
    # - sed -i "s,/var/www/html/,/var/www/html/$GIT_APP_FOLDER/public,g" /etc/nginx/sites-enabled/$WEB_SERVER.conf
 
     # Pull Glue Application from GitBucket
-    #- cd /var/www/html
-    #- git init
-    #- git remote add origin $GIT_REPO
-   # - git fetch origin
-    #- git checkout origin/$GIT_BRANCH -- $GIT_APP_FOLDER
+    - cd /var/www/html
+    - git init
+    - git remote add origin $GIT_REPO
+    - git fetch origin
+    - git checkout origin/$GIT_BRANCH -- $GIT_APP_FOLDER
 
     # Confiure Glue App .env file and install dependancies using Composer
 
-    #- cd /var/www/html/$GIT_APP_FOLDER
-    - sed -i "s/.*DB_DATABASE=.*/DB_DATABASE=$APP_DB/" .env
-    - sed -i "s/.*DB_USERNAME=.*/DB_USERNAME=$APP_DB_USER/" .env
-    - sed -i "s/.*DB_PASSWORD=.*/DB_PASSWORD=$APP_DB_PASS/" .env
+    - cd /var/www/html/$GIT_APP_FOLDER
+    - sed -i "s/.*DB_DATABASE=.*/DB_DATABASE=$APP_DB/" /var/www/html/$GIT_APP_FOLDER/.env
+    - sed -i "s/.*DB_USERNAME=.*/DB_USERNAME=$APP_DB_USER/" /var/www/html/$GIT_APP_FOLDER/.env
+    - sed -i "s/.*DB_PASSWORD=.*/DB_PASSWORD=$APP_DB_PASS/" /var/www/html/$GIT_APP_FOLDER/.env
     - composer install
     - php artisan key:generate
     - mysql -uroot $APP_DB < /var/www/html/$GIT_APP_FOLDER/$DB_FILE
@@ -49,6 +56,11 @@ phases:
     # Set Permission   
     - chown -R www-data:www-data /var/www/html/$GIT_APP_FOLDER/storage
     - chown -R www-data:www-data /var/www/html/$GIT_APP_FOLDER/bootstrap/cache;
+
+    # Export Port 80 to access the web app
+    #- EXPOSE 80/tcp
+   
+     
    
  pre_build:
    commands:
@@ -57,10 +69,16 @@ phases:
  build:
    commands:
     - ./vendor/bin/phpunit
+    - ls
+    - pwd
+    - cd /codebuild/output/src130046548/src/github.com/bjnandi/glue-with-composer-preinstalled
+    - ls
     - pwd
     - ls
+    - pwd
+    - find . -name reports
 reports:
   test-report:
     files:
-      - build/reports.xml
+      -/build/reports.xml
     file-format: JunitXml
