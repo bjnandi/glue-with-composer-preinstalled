@@ -30,11 +30,11 @@ phases:
    # - sed -i "s,/var/www/html/,/var/www/html/$GIT_APP_FOLDER/public,g" /etc/nginx/sites-enabled/$WEB_SERVER.conf
 
     # Pull Glue Application from GitBucket
-    - cd /var/www/html
-    - git init
-    - git remote add origin $GIT_REPO
-    - git fetch origin
-    - git checkout origin/$GIT_BRANCH -- $GIT_APP_FOLDER
+    #- cd /var/www/html
+    #- git init
+    #- git remote add origin $GIT_REPO
+   # - git fetch origin
+    #- git checkout origin/$GIT_BRANCH -- $GIT_APP_FOLDER
 
     # Confiure Glue App .env file and install dependancies using Composer
 
@@ -62,5 +62,5 @@ phases:
 reports:
   test-report:
     files:
-      - /var/www/html/build/reports.xml
+      - build/reports.xml
     file-format: JunitXml
