@@ -73,15 +73,15 @@ phases:
     - pwd
     - cd tests
     - ls
-    - cd ../vendor
+    - find . -name reports111
     - ls
     - cd /
     - ls
     - pwd
-    - cd ./codebuild/output/src782155194/src/github.com/bjnandi/glue-with-composer-preinstalled
+    - cd codebuild/output/src782155194/src/github.com/bjnandi/glue-with-composer-preinstalled
     - ls
     - pwd
-    - find . -name reports111
+
 
 reports:
   test-report:
