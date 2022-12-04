@@ -62,5 +62,5 @@ phases:
 reports:
   test-report:
     files:
-      - build/reports.xml
+      - /var/www/html/build/reports.xml
     file-format: JunitXml
