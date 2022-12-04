@@ -71,14 +71,7 @@ phases:
     - ./vendor/bin/phpunit
     - ls
     - pwd
-    - cd tests
-    - ls
     - find . -name reports111
-    - ls
-    - cd /
-    - ls
-    - pwd
-    - cd codebuild/output/src782155194/src/github.com/bjnandi/glue-with-composer-preinstalled
     - ls
     - pwd
 
@@ -87,4 +80,5 @@ reports:
   test-report:
     files:
       - reports111.xml
+    base-directory: /var/www/html/
     file-format: JunitXml
