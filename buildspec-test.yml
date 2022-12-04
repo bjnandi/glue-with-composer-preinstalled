@@ -78,6 +78,7 @@ phases:
     - cd /
     - ls
     - pwd
+    - cd ./codebuild/output/src782155194/src/github.com/bjnandi/glue-with-composer-preinstalled
     - ls
     - pwd
     - find . -name reports
@@ -85,5 +86,5 @@ phases:
 reports:
   test-report:
     files:
-      - reports.xml
+      - reports111.xml
     file-format: JunitXml
