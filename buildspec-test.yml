@@ -71,12 +71,17 @@ phases:
     - ./vendor/bin/phpunit
     - ls
     - pwd
-    - cd /codebuild/output/src130046548/src/github.com/bjnandi/glue-with-composer-preinstalled
+    - cd tests
+    - ls
+    - cd ../vendor
+    - ls
+    - cd ~
     - ls
     - pwd
     - ls
     - pwd
     - find . -name reports
+    - cd../../../..
 reports:
   test-report:
     files:
