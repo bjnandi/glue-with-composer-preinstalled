@@ -5,13 +5,7 @@ phases:
 
  install:
   commands:
-   # - pwd
-   # - ls
-   # - mkdir cloudboost
-   # - cp /Entrypoint/* /cloudboost/
-   # - cp /NGINX/* /cloudboost/nginx/
-   # - cd cloudboost
-    
+  
     # Here we are going to install required packages for our Laravel Project
     - apt update -y
     - apt install lsb-release ca-certificates apt-transport-https software-properties-common curl unzip mysql-server git nginx -y --no-install-recommends
@@ -27,14 +21,6 @@ phases:
     - mysql -uroot -e "CREATE DATABASE $APP_DB;"
     - mysql -uroot -e "CREATE USER $APP_DB_USER@'localhost' IDENTIFIED BY '$APP_DB_PASS';"
     - mysql -uroot -e "GRANT ALL ON $APP_DB.* TO $APP_DB_USER@'localhost';"
-
-    # Confiure Web Server. we are using nginx as our web server.
-
-    #- cp /cloudboost/nginx/* /etc/nginx/sites-available/$WEB_SERVER.conf
-    #- ln -s /etc/nginx/sites-available/$WEB_SERVER.conf /etc/nginx/sites-enabled/$WEB_SERVER.conf
-    #- rm -rf /etc/nginx/sites-enabled/default
-    #- sed -i "s/IP_ADDRESS_OR_DOMAIN/$WEB_SERVER/g" /etc/nginx/sites-enabled/$WEB_SERVER.conf
-   # - sed -i "s,/var/www/html/,/var/www/html/$GIT_APP_FOLDER/public,g" /etc/nginx/sites-enabled/$WEB_SERVER.conf
 
     # Pull Glue Application from GitBucket
     - cd /var/www/html
@@ -56,29 +42,20 @@ phases:
     # Set Permission   
     - chown -R www-data:www-data /var/www/html/$GIT_APP_FOLDER/storage
     - chown -R www-data:www-data /var/www/html/$GIT_APP_FOLDER/bootstrap/cache;
-
-    # Export Port 80 to access the web app
-    #- EXPOSE 80/tcp
-   
-     
    
  pre_build:
-   commands:
-    - echo Logging in to Amazon EKS...
+   commands:  
     
  build:
    commands:
     - ./vendor/bin/phpunit
     - ls
-    - pwd
-    - find . -name reports111
-    - ls
-    - pwd
-
+    - pwd  
+    - find . -name unitreports
 
 reports:
   test-report:
     files:
-      - reports111.xml
-    base-directory: /var/www/html/
+      - unitreports.xml
+    base-directory: /var/www/html
     file-format: JunitXml
