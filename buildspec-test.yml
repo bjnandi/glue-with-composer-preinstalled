@@ -13,6 +13,7 @@ phases:
     
  build:
    commands:
+    - composer global require phpunit/phpunit
     - ./vendor/bin/phpunit
     - pwd
     - ls
